@@ -8,7 +8,7 @@ class DB
     protected $pdo;
     protected $table;
 
-    public function __construct($sql)
+    public function __construct($table)
     {
         $this->table = $table;
         $this->pdo = new PDO($this->dsn, 'root', '');
