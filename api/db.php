@@ -126,3 +126,13 @@ function to($url)
 {
     header("location:$url");
 }
+
+$Total=new DB('total');
+$Ad=new DB('ad');
+$Admin=new DB('admin');
+$Bottom=new DB('bottom');
+$Image=new DB('image');
+$Menu=new DB('menu');
+$Mvim=new DB('mvim');
+$News=new DB('news');
+$Title=new DB('title');
