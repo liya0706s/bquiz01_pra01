@@ -136,3 +136,16 @@ $Menu=new DB('menu');
 $Mvim=new DB('mvim');
 $News=new DB('news');
 $Title=new DB('title');
+
+/**
+ * 透過網址參數來宣告一個全域的$DB物件變數，這樣只要網址有do這個參數，
+ * $DB就代表指定的資料表物件變數
+ */
+
+if(isset($_GET['do'])){
+    if(isset(${ucfirst($_GET['do'])})){
+        $DB=${ucfirst($_GET['do'])};
+    }
+}else{
+    $DB=$Title;
+}
