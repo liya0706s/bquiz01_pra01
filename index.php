@@ -19,7 +19,6 @@
 			<div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
 		</div>
 	</div>
-	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
 		<a title="" href="./home_files/home.htm">
 			<div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div><!--標題-->
@@ -140,7 +139,7 @@
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;"></span>
+			<span class="t" style="line-height:123px;"><?=$Bottom->find(1)['bottom'];?></span>
 		</div>
 	</div>
 

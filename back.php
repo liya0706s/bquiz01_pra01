@@ -19,7 +19,6 @@
 			<div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
 		</div>
 	</div>
-	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
 		<a title="" href="?">
 			<div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div><!--標題-->
@@ -29,7 +28,7 @@
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">後台管理選單</span>
-					<a style="color:#000; font-size:13px; text-decoration:none;" href="./Management page_files/Management page.htm">
+					<a style="color:#000; font-size:13px; text-decoration:none;" href="?=title">
 						<div class="mainmu">
 							網站標題管理 </div>
 					</a>
@@ -74,11 +73,11 @@
 				</div>
 			</div>
 			<?php
-			$do=$_GET['do']??'title';
-			$file="./back/{$do}.php";
-			if(file_exists($file)){
+			$do = $_GET['do'] ?? 'title';
+			$file = "./back/{$do}.php";
+			if (file_exists($file)) {
 				include $file;
-			}else{
+			} else {
 				include "./back/title.php";
 			}
 			?>
@@ -88,7 +87,7 @@
 					<tbody>
 						<tr>
 							<td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
-							<td><button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
+							<td><button onclick="location.href='./api/logout.php'" ; style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -119,21 +118,7 @@
 				</div>
 			</div>
 			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
-			<script>
-				$(".sswww").hover(
-					function() {
-						$("#alt").html("" + $(this).children(".all").html() + "").css({
-							"top": $(this).offset().top - 50
-						})
-						$("#alt").show()
-					}
-				)
-				$(".sswww").mouseout(
-					function() {
-						$("#alt").hide()
-					}
-				)
-			</script>
+			
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
