@@ -1,14 +1,10 @@
-<!-- 從./back/title.php的 新增網站標題圖片 按鈕input onclick op()來的 -->
-<h3>新增網站標題圖片</h3>
+<!-- 從./back/ad.php的 按鈕input onclick op() GET傳值table 來的 -->
+<h3>新增動態文字廣告</h3>
 <hr>
 <form action="./api/add.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>標題區圖片:</td>
-            <td><input type="file" name="img"></td>
-        </tr>
-        <tr>
-            <td>標題區替代文字:</td>
+            <td>動態文字廣告:</td>
             <td><input type="text" name="text"></td>
         </tr>
     </table>
