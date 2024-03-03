@@ -9,12 +9,12 @@
                 <td width="10%">刪除</td>
             </tr>
             <?php
-            $rows = $Title->all();
+            $rows = $News->all();
             foreach ($rows as $row) {
             ?>
                 <tr style="text-align: center;">
                     <td width="23%">
-                        <textarea cols="90" rows="4" type="text" name="text[]" value="<?= $row['text']; ?>"></textarea>
+                        <textarea cols="90" rows="4" type="text" name="text[]"><?= $row['text']; ?></textarea>
                     </td>
                     <!-- 判斷顯示狀態並讓checkbox狀態改變 -->
                     <td width="7%"><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>></td>
