@@ -13,10 +13,10 @@
             $rows = $Image->all();
             foreach ($rows as $row) {
             ?>
-                <tr>
-                    <td width="45%"><img src="./img/<?= $row['img']; ?>" style="width:300px;height:30px"></td>
+                <tr style="text-align: center;">
+                    <td width="45%"><img src="./img/<?= $row['img']; ?>" style="width:100px;height:70px"></td>
                     <!-- 判斷顯示狀態並讓checkbox狀態改變 -->
-                    <td width="7%"><input type="check" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>></td>
+                    <td width="7%"><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>></td>
                     <td width="7%"><input type="checkbox" name="del[]" value="<?= $row['id']; ?>"></td>
                     <td>
                         <!-- 傳送表單和資料id的參數到api的upload.php, 才知道是哪個資料表哪筆資料要更新 -->
