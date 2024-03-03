@@ -26,7 +26,7 @@
                     <td><input type="checkbox" name="del[]" value="<?= $row['id']; ?>"></td>
                     <td>
                         <!-- 傳送表單和資料id的參數到api的upload.php, 才知道是哪個資料表哪筆資料要更新 -->
-                        <input type="button" onclick="op('#cover','#cvr','./modal/submenu.php?table=<?= $do; ?>&id=<?= $row['id']; ?>')">
+                        <input type="button" value="編輯次選單" onclick="op('#cover','#cvr','./modal/submenu.php?table=<?= $do; ?>&id=<?= $row['id']; ?>')">
                         <!-- 每筆資料都有一個對應的id, 後端才知道要編輯哪一筆 -->
                         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                     </td>
