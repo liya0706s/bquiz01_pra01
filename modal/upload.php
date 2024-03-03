@@ -16,8 +16,8 @@ switch ($_GET['table']) {
 }
 ?>
 <hr>
-<!-- 所有更新功能表單都會送到api中的upload.php這支程式中處理 -->
-<form action="./api/upload.php" method="post" enctype="multipart/form-data">
+<!-- 所有更新功能表單都會送到api中的update.php這支程式中處理 -->
+<form action="./api/update.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <?php
