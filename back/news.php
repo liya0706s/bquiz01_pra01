@@ -9,7 +9,13 @@
                 <td width="10%">刪除</td>
             </tr>
             <?php
-            $rows = $News->all();
+            $total=$News->count();
+            $div=5;
+            $pages=ceil($total/$div);
+            $now=$_GET['p']??1;
+            $start=($now-1)*$div;
+
+            $rows = $News->all(" limit $start, $div");
             foreach ($rows as $row) {
             ?>
                 <tr style="text-align: center;">
@@ -26,6 +32,26 @@
                 </tr>
             <?php } ?>
         </table>
+        
+        <div class="cent">
+            <?php
+            if($now>1){
+                $prev=$now-1;
+                echo "<a href='?do=$do&p=$prev'> < </a>";
+            }
+
+            for($i=1;$i<=$pages;$i++){
+                $fontsize=($now==$i)?'font-size:20px':'font-size:16px';
+                echo "<a href='?do=$do&p=$i' style='$fontsize'> $i </a>";
+            }
+
+            if($now<$pages){
+                $next=$now-1;
+                echo "<a href='?do=$do&p=$next'> > </a>";
+            }
+            ?>
+        </div>
+
         <table style="margin-top:40px; width:70%;">
             <tr>
                 <td width="200px">
