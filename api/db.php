@@ -142,10 +142,14 @@ $Title=new DB('title');
  * $DB就代表指定的資料表物件變數
  */
 
+//  判斷網址參數中是否有do 
 if(isset($_GET['do'])){
+    // 再判斷網址參數是否有對應的資料表物件存在
     if(isset(${ucfirst($_GET['do'])})){
+        // 將資料表物件指定給$DB這個變數
         $DB=${ucfirst($_GET['do'])};
     }
 }else{
+    // 預設$DB變數為$Title 
     $DB=$Title;
 }
