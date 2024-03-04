@@ -42,9 +42,7 @@
 					foreach ($mainmu as $main) {
 					?>
 						<div class="mainmu">
-							<a href="<?= $main['href']; ?>" style="color:#000; font-size:13px; text-dectoration:none;">
-								<?= $main['text']; ?>
-							</a>
+							<a href="<?= $main['href']; ?>" style="color:#000; font-size:13px; text-decoration:none;"><?= $main['text']; ?></a>
 							<?php
 							// 輸出主選單後，判斷該主選單是否有子選單
 							if ($Menu->count(['menu_id' => $main['id']]) > 0) {
@@ -55,7 +53,7 @@
 
 								// 利用迴圈來輸出子選單
 								foreach ($subs as $sub) {
-									echo "<a href='{$sub['href']}'";
+									echo "<a href='{$sub['href']}'>";
 									echo "<div class='mainmu2'>";
 									echo $sub['text'];
 									echo "</div>";
