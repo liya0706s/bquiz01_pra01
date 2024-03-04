@@ -86,6 +86,7 @@
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
 				<?php
+				// 用SESSION判斷是否有登入狀態
 				if (isset($_SESSION['login'])) {
 				?>
 					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="location.href='back.php'">返回管理</button>
@@ -94,9 +95,10 @@
 				?>
 					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="location.href='?do=login'">管理登入</button>
 				<?php } ?>
+
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
-
+					<!-- 建立一個div來放置向上icon, 並註冊點擊時的動作 -->
 					<div class="cent" onclick="pp(1)">
 						<img src="./icon/up.jpg" alt="">
 					</div>
@@ -105,30 +107,43 @@
 					$imgs = $Image->all(['sh' => 1]);
 					foreach ($imgs as $idx => $img) {
 					?>
-					<?php
-					}
-					?>
-
-
+						<div id="ssaa<?= $idx; ?>" class="im cent">
+						<!-- 依照題目要求將圖片大小設為150px 103px -->
+						<img src="./img/<?=$img['img'];?>" style="width:150px; height: 103px; border:3px solid orange; margin:3px;">
+						</div>
+					<?php } ?>
+					<!-- 建立一個div來放置向下icon, 並註冊點擊時的動作 -->
+					<div class="cent" onclick="pp(2)">
+						<img src="./icon/dn.jpg" alt="">
+					</div>
 
 					<script>
-						var nowpage = 0,
-							num = 0;
+						var nowpage = 1
+						/**
+						 * num 變數是用來紀錄有多少張圖片要顯示用的,
+						 * 記得在PHP的標籤最後要加上;符號, 用來表示這一行js結束 
+						 */
+						var num = <?=$Image->count(['sh'=>1]);?>; 
 
 						function pp(x) {
 							var s, t;
 							if (x == 1 && nowpage - 1 >= 0) {
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+							// 原本的js程式再向下輪播的判斷式中有錯,
+							// 將程式內容改成如下, 才會正常輪播
+							if (x == 2 && nowpage < (num-3) ) {
 								nowpage++;
 							}
+							// 先將所有的.im元素都隱藏起來
 							$(".im").hide()
+							// 使用迴圈依據nowpage的值來決定那三張圖片要顯示
 							for (s = 0; s <= 2; s++) {
 								t = s * 1 + nowpage * 1;
 								$("#ssaa" + t).show()
 							}
 						}
+						// 頁面載入後先執行一次pp(1),讓畫面只剩第一頁的三張圖
 						pp(1)
 					</script>
 				</div>
