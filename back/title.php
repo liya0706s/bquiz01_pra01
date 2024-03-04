@@ -14,7 +14,7 @@
             $rows = $Title->all();
             foreach ($rows as $row) {
             ?>
-                <tr>
+                <tr style="text-align: center;">
                     <td width="45%"><img src="./img/<?= $row['img']; ?>" style="width:300px;height:30px"></td>
                     <td width="23%"><input type="text" name="text[]" value="<?= $row['text']; ?>"></td>
                     <!-- 判斷顯示狀態並讓checkbox狀態改變 -->

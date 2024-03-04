@@ -20,8 +20,13 @@
 		</div>
 	</div>
 	<div id="main">
-		<a title="" href="./home_files/home.htm">
-			<div class="ti" style="background:url('use/'); background-size:cover;"></div><!--標題-->
+		<?php
+		// 取得網站標題資料
+		$title = $Title->find(['sh' => 1]);
+		?>
+		<!-- 標籤中的title屬性可以在滑鼠停留時顯示，因此這裡放上網站標題替代文字 -->
+		<a title="<?=$title['text'];?>" href="index.php">
+			<div class="ti" style="background:url('./img/<?=$title['img'];?>'); background-size:cover;"></div><!--標題-->
 		</a>
 		<div id="ms">
 			<div id="lf" style="float:left;">
@@ -30,7 +35,7 @@
 					<span class="t botli">主選單區</span>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-					<span class="t">進站總人數 : <?=$Total->find(1)['total'];?></span>
+					<span class="t">進站總人數 : <?= $Total->find(1)['total']; ?></span>
 				</div>
 			</div>
 
@@ -139,7 +144,7 @@
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;"><?=$Bottom->find(1)['bottom'];?></span>
+			<span class="t" style="line-height:123px;"><?= $Bottom->find(1)['bottom']; ?></span>
 		</div>
 	</div>
 
