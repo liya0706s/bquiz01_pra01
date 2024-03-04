@@ -25,14 +25,48 @@
 		$title = $Title->find(['sh' => 1]);
 		?>
 		<!-- 標籤中的title屬性可以在滑鼠停留時顯示，因此這裡放上網站標題替代文字 -->
-		<a title="<?=$title['text'];?>" href="index.php">
-			<div class="ti" style="background:url('./img/<?=$title['img'];?>'); background-size:cover;"></div><!--標題-->
+		<a title="<?= $title['text']; ?>" href="index.php">
+			<div class="ti" style="background:url('./img/<?= $title['img']; ?>'); background-size:cover;"></div><!--標題-->
 		</a>
+
 		<div id="ms">
 			<div id="lf" style="float:left;">
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php
+					// 先取出所有設為顯示的主選單
+					$mainmu = $Menu->all(['sh' => 1, 'menu_id' => 0]);
+
+					// 利用迴圈來輸出主選單
+					foreach ($mainmu as $main) {
+					?>
+						<div class="mainmu">
+							<a href="<?= $main['href']; ?>" style="color:#000; font-size:13px; text-dectoration:none;">
+								<?= $main['text']; ?>
+							</a>
+							<?php
+							// 輸出主選單後，判斷該主選單是否有子選單
+							if ($Menu->count(['menu_id' => $main['id']]) > 0) {
+								// 如果有子選單，則建立一個div來放置子選單
+								echo "<div class='mw'>";
+								// 取得該主選單的子選單
+								$subs = $Menu->all(['menu_id' => $main['id']]);
+
+								// 利用迴圈來輸出子選單
+								foreach ($subs as $sub) {
+									echo "<a href='{$sub['href']}'";
+									echo "<div class='mainmu2'>";
+									echo $sub['text'];
+									echo "</div>";
+									echo "</a>";
+								}
+								echo "</div>";
+							}
+							?>
+						</div>
+						</a>
+					<?php } ?>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 : <?= $Total->find(1)['total']; ?></span>
@@ -51,74 +85,34 @@
 			?>
 			<!-- 中間區塊結束 -->
 
-			<div class="di" style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
-				<marquee scrolldelay="120" direction="left" style="position:absolute; width:100%; height:40px;">
-				</marquee>
-				<div style="height:32px; display:block;"></div>
-				<!--正中央-->
-				<script>
-					var lin = new Array();
-					var now = 0;
-					if (lin.length > 1) {
-						setInterval("ww()", 3000);
-						now = 1;
-					}
-
-					function ww() {
-						$("#mwww").html("<embed loop=true src='" + lin[now] + "' style='width:99%; height:100%;'></embed>")
-						//$("#mwww").attr("src",lin[now])
-						now++;
-						if (now >= lin.length)
-							now = 0;
-					}
-				</script>
-				<div style="width:100%; padding:2px; height:290px;">
-					<div id="mwww" loop="true" style="width:100%; height:100%;">
-						<div style="width:99%; height:100%; position:relative;" class="cent">沒有資料</div>
-					</div>
-				</div>
-				<div style="width:95%; padding:2px; height:190px; margin-top:10px; padding:5px 10px 5px 10px; border:#0C3 dashed 3px; position:relative;">
-					<span class="t botli">最新消息區
-					</span>
-					<ul class="ssaa" style="list-style-type:decimal;">
-					</ul>
-					<div id="altt" style="position: absolute; width: 350px; min-height: 100px; background-color: rgb(255, 255, 204); top: 50px; left: 130px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
-					<script>
-						$(".ssaa li").hover(
-							function() {
-								$("#altt").html("<pre>" + $(this).children(".all").html() + "</pre>")
-								$("#altt").show()
-							}
-						)
-						$(".ssaa li").mouseout(
-							function() {
-								$("#altt").hide()
-							}
-						)
-					</script>
-				</div>
-			</div>
-			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
-			<script>
-				$(".sswww").hover(
-					function() {
-						$("#alt").html("" + $(this).children(".all").html() + "").css({
-							"top": $(this).offset().top - 50
-						})
-						$("#alt").show()
-					}
-				)
-				$(".sswww").mouseout(
-					function() {
-						$("#alt").hide()
-					}
-				)
-			</script>
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
-				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=admin')">管理登入</button>
+				<?php
+				if (isset($_SESSION['login'])) {
+				?>
+					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="location.href='back.php'">返回管理</button>
+				<?php
+				} else {
+				?>
+					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="location.href='?do=login'">管理登入</button>
+				<?php } ?>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
+
+					<div class="cent" onclick="pp(1)">
+						<img src="./icon/up.jpg" alt="">
+					</div>
+
+					<?php
+					$imgs = $Image->all(['sh' => 1]);
+					foreach ($imgs as $idx => $img) {
+					?>
+					<?php
+					}
+					?>
+
+
+
 					<script>
 						var nowpage = 0,
 							num = 0;

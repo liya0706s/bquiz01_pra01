@@ -75,6 +75,8 @@ body
 	line-height:30px;
 	padding:2px 10px 2px 10px;
 	margin:7px 1px 7px 1px;
+	height: 30px; 
+	/* 增加一個固定高度來避免被內容撐開 */
 }
 .mainmu:hover
 {
