@@ -43,6 +43,7 @@
 					?>
 						<div class="mainmu">
 							<a href="<?= $main['href']; ?>" style="color:#000; font-size:13px; text-decoration:none;"><?= $main['text']; ?></a>
+							
 							<?php
 							// 輸出主選單後，判斷該主選單是否有子選單
 							if ($Menu->count(['menu_id' => $main['id']]) > 0) {
